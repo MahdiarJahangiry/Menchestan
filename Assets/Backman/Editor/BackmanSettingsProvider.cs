@@ -2,7 +2,11 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+#if UNITY_2019_1_OR_NEWER
 using UnityEngine.UIElements;
+#elif UNITY_2018_4_OR_NEWER
+using UnityEngine.Experimental.UIElements;
+#endif
 
 namespace Backman.Client
 {
@@ -63,7 +67,7 @@ namespace Backman.Client
             backmanSettings.Password = m_CustomSettings.FindProperty("m_password").stringValue;
 
             GUI.DrawTexture(new Rect(0, 0, 100, 100), logoTexture, ScaleMode.StretchToFill, true, 10.0F);
-            EditorGUILayout.Space(100, true);
+            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Identity");
             EditorGUILayout.PropertyField(m_CustomSettings.FindProperty("m_clientID"));
             EditorGUILayout.PropertyField(m_CustomSettings.FindProperty("m_secret"));
